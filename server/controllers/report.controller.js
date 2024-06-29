@@ -31,7 +31,7 @@ exports.create_report = async (req, res) => {
 
     const userDetails = await usermodel.findOne({email: userEmail });
     if (!userDetails) {
-      return res.status(404).json({ status: "error", message: "Collector not found." });
+      return res.status(404).json({ status: "error", message: "User not found." });
     }
 
     const newUserReport = await reportmodel.create({
@@ -96,13 +96,16 @@ exports.assign_collector_to_report = async (req, res) => {
       return res.status(404).json({ status: "error", message: "Collector not found." });
     }
 
-    const existingReport = await reportmodel.findById(reportId);
+    const objectId = new ObjectId(reportId);
+
+    const existingReport = await reportmodel.findById({_id: objectId});
     if (!existingReport) {
       return res.status(404).json({ status: "error", message: "Report not found." });
     }
 
     existingReport.collectorName = collectorDetails.name;
     existingReport.collectorEmail = collectorEmail;
+    existingReport.status = 'Collector assigned';
     await existingReport.save();
 
     res.status(200).json({

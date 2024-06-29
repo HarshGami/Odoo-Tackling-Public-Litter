@@ -200,7 +200,7 @@ function Register({ setIsAuth }) {
             />
           </div>
           <Button
-            className="w-20 mx-auto"
+            className="w-30 mx-auto"
             variant="primary"
             type="submit"
             onClick={RegisterUser}

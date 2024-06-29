@@ -9,7 +9,7 @@ function Home({ setIsAuth }) {
 
   useEffect(() => {
     async function verification() {
-      const response = await fetch('http://localhost:5000/api/verification', {
+      const response = await fetch('http://localhost:5000/api/auth/verification', {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

@@ -1,20 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
-const sampleTasks = [
-  { id: 1, description: 'Overflowing trash bin on 5th Street', status: 'Completed', assignedDate: '2024-06-20', completedDate: '2024-06-21' },
-  { id: 2, description: 'Litter on Main Street Park', status: 'Open', assignedDate: '2024-06-21' },
-  { id: 3, description: 'Broken bins on 3rd Avenue', status: 'In Progress', assignedDate: '2024-06-22' },
-];
+// const sampleTasks = [
+//   { id: 1, description: 'Overflowing trash bin on 5th Street', status: 'Completed', assignedDate: '2024-06-20', completedDate: '2024-06-21' },
+//   { id: 2, description: 'Litter on Main Street Park', status: 'Open', assignedDate: '2024-06-21' },
+//   { id: 3, description: 'Broken bins on 3rd Avenue', status: 'In Progress', assignedDate: '2024-06-22' },
+// ];
 
 const CollectorTaskHistory = () => {
   const [tasks, setTasks] = useState([]);
-  const history = useHistory();
 
-  useEffect(() => {
-    // Fetch collector's assigned tasks from backend (mocked data for demonstration)
-    setTasks(sampleTasks);
-  }, []);
+
 
   const handleMarkCompleted = (taskId) => {
     // Simulated function to mark task as completed
@@ -27,6 +23,28 @@ const CollectorTaskHistory = () => {
     setTasks(updatedTasks);
     // Call backend API to update task status here in actual implementation
   };
+
+  async function fetchData() {
+    // const sellerId = "64d9bc1985a03fe1d1aba5db";
+    try {
+      // const config = {
+      //   headers: {
+      //     "Content-type": "application/json",
+      //   },
+      // };
+      let collectorEmail = localStorage.getItem('email');
+      const product = await fetch(
+        `http://localhost:5000/api/seller/allproducts/${collectorEmail}`
+      );
+      // console.log(product.data);
+      setTasks(product);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <div className="min-h-screen bg-gray-100 p-4">

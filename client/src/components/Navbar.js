@@ -55,8 +55,11 @@ function NavBar({ isAuth, setIsAuth, role }) {
                   </>
                 ) : role === "2" ? (
                   <>
-                    <LinkContainer to="/task">
+                    <LinkContainer to="/">
                       <Nav.Link>DashBoard</Nav.Link>
+                    </LinkContainer>
+                    <LinkContainer to="/assigned_tasks">
+                      <Nav.Link>Assigned Tasks</Nav.Link>
                     </LinkContainer>
                     <LinkContainer to="/task_history">
                       <Nav.Link>Task History</Nav.Link>

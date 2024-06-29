@@ -48,7 +48,7 @@ function Register({ setIsAuth }) {
       return;
     }
 
-    const response = await fetch('http://localhost:5000/api/login', {
+    const response = await fetch('http://localhost:5000/api/auth/login', {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -95,7 +95,7 @@ function Register({ setIsAuth }) {
 
     console.log(user)
 
-    const res = await fetch('http://localhost:5000/api/register', {
+    const res = await fetch('http://localhost:5000/api/auth/register', {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -200,7 +200,7 @@ function Register({ setIsAuth }) {
             />
           </div>
           <Button
-            className="w-20 mx-auto"
+            className="w-30 mx-auto"
             variant="primary"
             type="submit"
             onClick={RegisterUser}

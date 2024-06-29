@@ -20,12 +20,12 @@ function NavBar({ isAuth, setIsAuth, role }) {
 
   return (
     <Navbar
-      className="fw-bold sticky-top"
+      className="fw-bold sticky-top bg-gradient-to-r from-green-500 to-green-700 text-white py-4"
       style={{ backgroundColor: "#5000ca" }}
       variant="dark"
       expand="lg"
     >
-      <Container fluid>
+      <Container fluid> 
         <Navbar.Brand className="mx-3">
           Garbage Management
         </Navbar.Brand>
@@ -39,17 +39,24 @@ function NavBar({ isAuth, setIsAuth, role }) {
               <Nav className="me-auto">
                 {role === "1" ? (
                   <>
-                    <LinkContainer to="/report_history">
-                      <Nav.Link>DeshBoard</Nav.Link>
+                    <LinkContainer to="/">
+                      <Nav.Link>DashBoard</Nav.Link>
                     </LinkContainer>
-                    <LinkContainer to="/report">
+                    <LinkContainer to="/report_form">
                       <Nav.Link>Create New Report</Nav.Link>
+                    </LinkContainer>
+                    <LinkContainer to="/report_history">
+                      <Nav.Link>Report History</Nav.Link>
+                    </LinkContainer>
+                    <LinkContainer to="/collection_schedule">
+                      <Nav.Link>View Schedule
+                      </Nav.Link>
                     </LinkContainer>
                   </>
                 ) : role === "2" ? (
                   <>
                     <LinkContainer to="/task">
-                      <Nav.Link>DeshBoard</Nav.Link>
+                      <Nav.Link>DashBoard</Nav.Link>
                     </LinkContainer>
                     <LinkContainer to="/task_history">
                       <Nav.Link>Task History</Nav.Link>
@@ -57,14 +64,14 @@ function NavBar({ isAuth, setIsAuth, role }) {
                   </>
                 ) : (
                   <>
-                    <LinkContainer to="/view_all_reports">
-                      <Nav.Link>DeshBoard</Nav.Link>
+                    <LinkContainer to="/">
+                      <Nav.Link>DashBoard</Nav.Link>
                     </LinkContainer>
                     <LinkContainer to="/assigne_task">
-                      <Nav.Link>assigne Task</Nav.Link>
+                      <Nav.Link>Assign Tasks</Nav.Link>
                     </LinkContainer>
                     <LinkContainer to="/task_status">
-                      <Nav.Link>Task Status</Nav.Link>
+                      <Nav.Link>Monitor Progress</Nav.Link>
                     </LinkContainer>
                   </>
                 )}

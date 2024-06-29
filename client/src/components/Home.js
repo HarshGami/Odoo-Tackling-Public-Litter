@@ -36,21 +36,7 @@ function Home({ setIsAuth }) {
   
   return (
     <div className="min-h-screen flex flex-col">
-      {/* Header */}
-      <header className=" fixed w-full bg-gradient-to-r from-green-500 to-green-700 text-white py-4">
-        <div className="container mx-auto flex justify-between items-center">
-          <h1 className="text-3xl font-bold">Garbage Management</h1>
-          <nav>
-            <a href="#about" className="mx-2">About Us</a>
-            <a href="#problem" className="mx-2">Problem</a>
-            <a href="#solution" className="mx-2">Solution</a>
-          </nav>
-        </div>
-      </header>
-
-      {/* Main Content */}
       <main className="flex-grow">
-        {/* Hero Section */}
         <section className="bg-hero-pattern bg-cover bg-center py-20 text-white">
           <div className="container mx-auto text-center">
             <motion.h2 
@@ -80,7 +66,6 @@ function Home({ setIsAuth }) {
           </div>
         </section>
 
-        {/* About Us Section */}
         <section id="about" className="py-20 bg-gradient-to-r from-gray-200 to-gray-300">
           <div className="container mx-auto text-center">
             <motion.h2 
@@ -102,7 +87,6 @@ function Home({ setIsAuth }) {
           </div>
         </section>
 
-        {/* Problem Statement Section */}
         <section id="problem" className="py-20 bg-white">
           <div className="container mx-auto text-center">
             <motion.h2 
@@ -124,7 +108,6 @@ function Home({ setIsAuth }) {
           </div>
         </section>
 
-        {/* Solution Section */}
         <section id="solution" className="py-20 bg-gradient-to-r from-gray-200 to-gray-300">
           <div className="container mx-auto text-center">
             <motion.h2 
@@ -173,13 +156,6 @@ function Home({ setIsAuth }) {
           </div>
         </section>
       </main>
-
-      {/* Footer */}
-      <footer className="bg-gradient-to-r from-green-500 to-green-700 text-white py-4">
-        <div className="container mx-auto text-center">
-          <p>&copy; 2024 Garbage Management. All rights reserved.</p>
-        </div>
-      </footer>
     </div>
   );
 }

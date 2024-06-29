@@ -55,11 +55,6 @@ const CollectionSchedule = () => {
           </div>
         </section>
       </main>
-      <footer className="bg-gradient-to-r from-green-500 to-green-700 text-white py-4">
-        <div className="container mx-auto text-center">
-          <p>&copy; 2024 Garbage Management. All rights reserved.</p>
-        </div>
-      </footer>
     </div>
   );
 };

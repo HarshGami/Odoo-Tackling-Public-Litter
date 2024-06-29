@@ -1,29 +1,39 @@
-import React, { useState } from 'react';
-
-const reportData = [
-  {
-    id: 1,
-    description: 'Overflowing trash bin on 5th Street',
-    collector: 'John Doe',
-    status: 'Completed',
-  },
-  {
-    id: 2,
-    description: 'Litter on Main Street Park',
-    collector: '',
-    status: 'Open',
-  },
-  {
-    id: 3,
-    description: 'Garbage bags left on sidewalk',
-    collector: 'Jane Smith',
-    status: 'Collector Assigned',
-  },
-];
+import React, { useState, useEffect } from 'react';
 
 const ReportHistory = () => {
+  const [reportData, setReportData] = useState([]);
   const [sortOrder, setSortOrder] = useState('description');
   const [filterStatus, setFilterStatus] = useState('All');
+
+  useEffect(() => {
+    const fetchReportData = async () => {
+      try {
+        const email = localStorage.getItem('email');
+        let apiUrl = `http://localhost:5000/api/report/reports_of_user?email=${email}`;
+        
+        if (filterStatus !== 'All') {
+          apiUrl += `&status=${filterStatus}`;
+        }
+        
+        const response = await fetch(apiUrl, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        });
+        if (!response.ok) {
+          throw new Error('Failed to fetch data');
+        }
+        const data = await response.json();
+
+        setReportData(data.reports); 
+      } catch (error) {
+        console.error('Error fetching report data:', error);
+      }
+    };
+
+    fetchReportData();
+  }, [filterStatus]); 
 
   const sortedData = [...reportData].sort((a, b) => {
     if (sortOrder === 'description') {
@@ -53,11 +63,6 @@ const ReportHistory = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 p-4">
-      <header className="bg-gradient-to-r from-blue-500 to-blue-700 text-white py-4">
-        <div className="container mx-auto">
-          <h1 className="text-3xl font-bold">Report History</h1>
-        </div>
-      </header>
       <main className="container mx-auto py-8">
         <div className="flex justify-between items-center mb-4">
           <div>
@@ -94,17 +99,13 @@ const ReportHistory = () => {
               className={`p-4 rounded shadow-md ${getStatusColor(report.status)}`}
             >
               <h3 className="text-xl font-bold mb-2">{report.description}</h3>
-              <p className="mb-2"><strong>Collector:</strong> {report.collector || 'Not assigned'}</p>
+              <p className="mb-2"><strong>Collector Name:</strong> {report.collectorName || 'Not assigned'}</p>
+              <p className="mb-2"><strong>Collector Email:</strong> {report.collectorEmail || 'Not assigned'}</p>
               <p><strong>Status:</strong> {report.status}</p>
             </div>
           ))}
         </div>
       </main>
-      <footer className="bg-gradient-to-r from-blue-500 to-blue-700 text-white py-4">
-        <div className="container mx-auto text-center">
-          <p>&copy; 2024 Garbage Management. All rights reserved.</p>
-        </div>
-      </footer>
     </div>
   );
 };

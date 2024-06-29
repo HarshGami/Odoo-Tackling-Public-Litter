@@ -11,7 +11,7 @@ const reportRouter = express.Router();
 
 reportRouter.route("/create_report").post(create_report);
 reportRouter.route("/change_report_status").patch(change_report_status);
-reportRouter.route("/assigne_collector_to_report").patch(assign_collector_to_report);
+reportRouter.route("/assign_collector_to_report").patch(assign_collector_to_report);
 reportRouter.route("/reports_of_user" ).get(reports_of_user)
 reportRouter.route("/get_all_reports").get(get_all_reports)
 reportRouter.route("/reports_of_collector").get(reports_of_collector)

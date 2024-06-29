@@ -1,5 +1,5 @@
 import Register from "./components/Register";
-import DashboardCollector from "./components/DashboardCollector";
+import DashboardCollector from "./components/collector/DashboardCollector";
 import DashboardUser from "./components/user/DashboardUser";
 import DashboardAdmin from "./components/admin/DashboardAdmin";
 import NavBar from "./components/Navbar";
@@ -10,6 +10,8 @@ import ReportLitter from "./components/user/ReportLitter";
 import ReportHistory from "./components/user/ReportHistory";
 import AsignTasks from "./components/admin/AsignTasks";
 import MonitorProgrss from "./components/admin/MonitorProgress";
+import AssignedTasks from "./components/collector/AssignedTasks";
+import CollectorTaskHistory from "./components/collector/CollectorTaskHistory"
 
 function App() {
   const [isAuth, setIsAuth] = useState(false);
@@ -60,6 +62,16 @@ function App() {
                       />
                     }
                   ></Route>
+                  <Route
+                      exact
+                      path="/assigned_tasks"
+                      element={<AssignedTasks />}
+                    ></Route>
+                    <Route
+                      exact
+                      path="/task_history"
+                      element={<CollectorTaskHistory />}
+                    ></Route>
                 </Routes>
               </Router>
             ) : (
